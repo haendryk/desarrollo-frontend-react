@@ -1,4 +1,4 @@
-
+import Contador from "./Contador";
 const Content = () => {
     return (
         <div>
@@ -11,6 +11,7 @@ const Content = () => {
             >
                 Learn React
             </a>
+            <Contador/>
         </div>
 
     );
