@@ -1,6 +1,14 @@
-import {useSelector} from "react-redux";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setNameModule } from "../../../redux/default/defaultActions";
 const Description = () => {
     const defaultState = useSelector((state) => state.default);
+    const dispatch = useDispatch(); 
+    
+    useEffect(() => {
+     dispatch(setNameModule("Desarrollo Front End con React"));
+    },[]);
+
     return (
         <>
         <p>

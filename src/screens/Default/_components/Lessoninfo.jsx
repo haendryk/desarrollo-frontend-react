@@ -1,8 +1,9 @@
 const Lessoninfo = ({lesoninf}) => {
+    const newLocal = <li>{lesoninf}</li>;
     return (
         <div>
             <ul>
-                <il>{lesoninf}</il>
+                {newLocal}
             </ul>
         </div>
     );

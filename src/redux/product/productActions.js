@@ -1,4 +1,4 @@
-import { SET_NAME_MODULE } from "./defaultTypres";
+import { SET_NAME_MODULE } from "./productTypres";
 
 export const setNameModule = (nameModule) => {
     return {
