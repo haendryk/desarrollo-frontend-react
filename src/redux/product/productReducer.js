@@ -1,22 +1,20 @@
-import { SET_NAME_MODULE } from "./productTypres";
+import { SET_PRODUCTS } from './productTypes';
 
 const initialState = {
-    name: "",
-    age: 0,
-    message: "",
+    PRODUCTS: [],
 };
 
 const productReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_NAME_MODULE:{
+        case SET_PRODUCTS : {
             return {
                 ...state,
-                name: action.payload,
-            };
+                PRODUCTS: action.payload,
+            }
         }
         default:
             return state;
-            
     }
-}
+};
+
 export default productReducer;

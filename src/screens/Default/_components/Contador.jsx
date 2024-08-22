@@ -1,39 +1,49 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 const Contador = () => {
-  const [count, setCount] = useState(10);
-
-  const handleContador1 = () => {
-    setCount(count + 1);
-  };
-
-  const handleContador2 = () => {
-    setCount(count - 1);
-  };
-
-  useEffect(() => {
-    setCount(12);
-  }, []);
-
-  useEffect(() => {
-    if (count > 15) {
-      alert("mayor a 15");
-    }
-  }, [count]);
-
-  useEffect(() => {
-    return () => {
-      console.log("desmontado");
+    const [contador, setContador] = useState(0);
+    const handleContador1 = () => {
+        setContador(contador + 1);
     };
-  }, []);
+    const handleContador2 = () => {
+        setContador(contador - 1);
+    };
 
-  return (
-    <>
-      <p>{count}</p>
-      <button onClick={handleContador1}>Incrementar</button>
-      <button onClick={handleContador2}>Decrementar</button>
-    </>
-  );
+    // Esta funcion especial se ejecuta cuando el componente
+    // se haya montado
+    // []
+    useEffect(() => {
+        setContador(12);
+    }, []);
+
+    // Esta funcion especial se ejecuta cuando haya cambiado
+    // el valor de contador
+    // [contador]
+    useEffect(() => {
+        if (contador === 15) {
+            alert('contador es 15');
+        }
+    }, [contador]);
+
+    // esta funcion especials e ejcuta cuando el componente
+    // se desmonta
+    useEffect(() => {
+        return () => {
+            console.log('El componenete se desmonto');
+        }
+    });
+
+
+    return (
+        <>
+            <h4>Componente Contador</h4>
+            <h5>{contador}</h5>
+            <div>
+                <button onClick={handleContador1}>Aumentar</button>
+                <button onClick={handleContador2}>Disminuir</button>
+            </div>
+        </>
+    );
 };
 
 export default Contador;

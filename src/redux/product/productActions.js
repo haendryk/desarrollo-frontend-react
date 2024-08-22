@@ -1,8 +1,8 @@
-import { SET_NAME_MODULE } from "./productTypres";
+import { SET_PRODUCTS } from './productTypes';
 
-export const setNameModule = (nameModule) => {
+export const setProducts = (products) => {
     return {
-        type: SET_NAME_MODULE,
-        payload: nameModule,
+        type: SET_PRODUCTS,
+        payload: products,
     }
 }

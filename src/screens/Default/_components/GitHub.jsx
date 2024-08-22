@@ -1,7 +1,16 @@
-import  Openlink  from '../../../components/Openlink';
-const GitHub = ({GitHub}) => {
-return (
-    <Openlink url="https://github.com/haendryk/desarrollo-frontend-react.git" title="Learn React"/>
-);
-}
-export default GitHub;
+const Content = () => {
+    return (
+        <div>
+            <a
+                className="App-link"
+                href="https://github.com/dheeyi/desarrollo-frontend-react"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Mi proyecto react (GitHub)
+            </a>
+        </div>
+    );
+};
+
+export default Content;
