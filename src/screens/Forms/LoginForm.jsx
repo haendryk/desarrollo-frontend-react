@@ -1,8 +1,12 @@
 import useForm from "../../hooks/useForm";
 import {useSelector, useDispatch} from "react-redux";
 import { saveFormData } from "../../redux/form/formActions";
+import { motion } from "framer-motion";
+import ModalInfo from "../../components/modalInfo";
+import { useState } from "react";
 const LoginForm = () => {
     const [values, handleChange]=useForm({username: '', email: '', password: ''});
+    const [showModalInfo, setModalInfo] = useState(true);
     const form = useSelector((state) => state.form);
     const dispatch = useDispatch();
     
@@ -11,13 +15,24 @@ const LoginForm = () => {
         dispatch(saveFormData(values));
         console.log(values);
     }
+    const hideModalInfo = () => {
+        setModalInfo(false);
+    }
     return (
-        <div>
-            <h1>Login Form</h1>
-            <form onSubmit={handleSubmit}>
+        <motion.div
+            initial={{opacity: 0, scale: 0.5}}
+            animate={{opacity: 1, scale: 1}}
+            transition={{duration: 0.5}}
+        >
+ 
+        <div className="container">
+        <ModalInfo visible={showModalInfo} message="Bienvenido Hammel" onClose={hideModalInfo} />
+            <form onSubmit={handleSubmit} className="form">
+               
+                <h2>Login</h2>
+                <h2>{form.formData.username}</h2>
                 <div>
-                    <h5>username:{form.formData.username}</h5>
-                    <h5>email:{form.formData.email}</h5>
+                
                 <label htmlFor="username">username</label>
                 <input 
                     type="text" 
@@ -50,10 +65,15 @@ const LoginForm = () => {
                     onChange={handleChange}
                 />
                 </div>
-                <button type="submit">Login</button>
+                <div className="button-container">
+                    <button type="submit" >Login</button>
+                </div>
+                
             </form>
         </div>
+        </motion.div>
     );
+
 };
 
 export default LoginForm;
