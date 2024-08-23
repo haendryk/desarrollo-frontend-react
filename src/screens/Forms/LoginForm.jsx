@@ -1,12 +1,12 @@
 import useForm from "../../hooks/useForm";
 import {useSelector, useDispatch} from "react-redux";
 import { saveFormData } from "../../redux/form/formActions";
-import { motion } from "framer-motion";
+import { color, motion } from "framer-motion";
 import ModalInfo from "../../components/modalInfo";
 import { useState } from "react";
 const LoginForm = () => {
     const [values, handleChange]=useForm({username: '', email: '', password: ''});
-    const [showModalInfo, setModalInfo] = useState(true);
+    const [showModalInfo, setModalInfo] = useState(false);
     const form = useSelector((state) => state.form);
     const dispatch = useDispatch();
     
@@ -15,20 +15,20 @@ const LoginForm = () => {
         dispatch(saveFormData(values));
         console.log(values);
     }
-    const hideModalInfo = () => {
-        setModalInfo(false);
+    const hideModalInfo = (status) => {
+        event.preventDefault();
+        setModalInfo(status);
     }
+    
     return (
         <motion.div
-            initial={{opacity: 0, scale: 0.5}}
-            animate={{opacity: 1, scale: 1}}
-            transition={{duration: 0.5}}
+        initial={{opacity: 0, y: -70}}
+        animate={{opacity: 1, y: 0}}
+        transition={{duration: 1}}    
         >
- 
+            <ModalInfo visible={showModalInfo} message="Bienvenido Hammel" onClose={() => hideModalInfo(false)} />
         <div className="container">
-        <ModalInfo visible={showModalInfo} message="Bienvenido Hammel" onClose={hideModalInfo} />
             <form onSubmit={handleSubmit} className="form">
-               
                 <h2>Login</h2>
                 <h2>{form.formData.username}</h2>
                 <div>
@@ -67,6 +67,7 @@ const LoginForm = () => {
                 </div>
                 <div className="button-container">
                     <button type="submit" >Login</button>
+                    <button onClick={() => hideModalInfo(true)} >Show</button>
                 </div>
                 
             </form>
