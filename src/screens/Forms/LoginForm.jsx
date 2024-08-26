@@ -1,23 +1,54 @@
 import useForm from "../../hooks/useForm";
 import {useSelector, useDispatch} from "react-redux";
 import { saveFormData } from "../../redux/form/formActions";
+import { color, motion } from "framer-motion";
+import ModalInfo from "../../components/modalInfo";
+import { useState } from "react";
 const LoginForm = () => {
-    const [values, handleChange]=useForm({username: '', email: '', password: ''});
+    const [values, handleChange]=useForm({username: '', email: '', password: '', message: ''});
+    const [showModalInfo, setModalInfo] = useState(false);
     const form = useSelector((state) => state.form);
     const dispatch = useDispatch();
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(saveFormData(values));
-        console.log(values);
+        if(form.authPassword){
+            if(form.authPassword.trim() === values.password.trim())  
+                return dispatch(saveFormData(values));
+            return  hideModalInfo(true), values.message = 'Password incorrecto';
+            
+        }
+        
     }
+    const hideModalInfo = (status) => {
+        event.preventDefault();
+
+        setModalInfo(status);
+    }
+
+    const showPassword = () => {
+        event.preventDefault();
+        const input = document.getElementById('password');
+        if (input.type === 'password') {
+            input.type = 'text';
+        } else {
+            input.type = 'password';
+        }
+    }
+    
     return (
-        <div>
-            <h1>Login Form</h1>
-            <form onSubmit={handleSubmit}>
+        <motion.div
+        initial={{opacity: 0, y: -70}}
+        animate={{opacity: 1, y: 0}}
+        transition={{duration: 1}}    
+        >
+        <ModalInfo visible={showModalInfo} message={values.message} onClose={() => hideModalInfo(false)} />
+        <div className="container">
+            <form onSubmit={handleSubmit} className="form">
+                <h2>Login</h2>
+                <h2>{form.formData.username}</h2>
                 <div>
-                    <h5>username:{form.formData.username}</h5>
-                    <h5>email:{form.formData.email}</h5>
+                
                 <label htmlFor="username">username</label>
                 <input 
                     type="text" 
@@ -48,12 +79,18 @@ const LoginForm = () => {
                     required 
                     value ={values.password}
                     onChange={handleChange}
-                />
+                /> <button onClick={showPassword} >ShowPassword</button>
                 </div>
-                <button type="submit">Login</button>
+                <div className="button-container">
+                    <button type="submit" >Login</button>
+                    <button onClick={() => hideModalInfo(true)} >Show</button>
+                </div>
+                
             </form>
         </div>
+        </motion.div>
     );
+
 };
 
 export default LoginForm;

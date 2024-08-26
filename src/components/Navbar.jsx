@@ -1,6 +1,14 @@
 import { Link } from 'react-router-dom';
+import {useSelector} from "react-redux";
+import React from 'react';
 
 const Navbar = () => {
+    const form = useSelector((state) => state.form);
+    let loginLink;
+    if(form.formData.username)
+        loginLink = (<li>{form.formData.username.trim() + ': ' + form.formData.email.trim()}</li>);
+    else
+        loginLink = (<li><Link to="/login">LoginForm</Link></li>);
     return (
         <nav>
             <ul>
@@ -13,9 +21,8 @@ const Navbar = () => {
                 <li>
                     <Link to="/products">Product</Link>
                 </li>
-                <li>
-                    <Link to="/login">LoginForm</Link>
-                </li>
+                {loginLink}
+                
             </ul>
         </nav>
     );
