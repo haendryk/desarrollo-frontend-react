@@ -5,11 +5,7 @@ import { color, motion } from "framer-motion";
 import ModalInfo from "../../components/modalInfo";
 import { useState } from "react";
 const LoginForm = () => {
-<<<<<<< HEAD
     const [values, handleChange]=useForm({username: '', email: '', password: '', message: ''});
-=======
-    const [values, handleChange]=useForm({username: '', email: '', password: ''});
->>>>>>> 38392d6f3855bad5190f75dd53c389598bb9423f
     const [showModalInfo, setModalInfo] = useState(false);
     const form = useSelector((state) => state.form);
     const dispatch = useDispatch();
@@ -19,21 +15,14 @@ const LoginForm = () => {
         if(form.authPassword){
             if(form.authPassword.trim() === values.password.trim())  
                 return dispatch(saveFormData(values));
-<<<<<<< HEAD
             return  hideModalInfo(true), values.message = 'Password incorrecto';
             
-=======
-            return alert('Password incorrecto');
->>>>>>> 38392d6f3855bad5190f75dd53c389598bb9423f
         }
         
     }
     const hideModalInfo = (status) => {
         event.preventDefault();
-<<<<<<< HEAD
 
-=======
->>>>>>> 38392d6f3855bad5190f75dd53c389598bb9423f
         setModalInfo(status);
     }
 
@@ -53,11 +42,7 @@ const LoginForm = () => {
         animate={{opacity: 1, y: 0}}
         transition={{duration: 1}}    
         >
-<<<<<<< HEAD
         <ModalInfo visible={showModalInfo} message={values.message} onClose={() => hideModalInfo(false)} />
-=======
-        <ModalInfo visible={showModalInfo} message="Bienvenido Hammel" onClose={() => hideModalInfo(false)} />
->>>>>>> 38392d6f3855bad5190f75dd53c389598bb9423f
         <div className="container">
             <form onSubmit={handleSubmit} className="form">
                 <h2>Login</h2>

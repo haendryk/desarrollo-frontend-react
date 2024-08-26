@@ -21,18 +21,8 @@ const Navbar = () => {
                 <li>
                     <Link to="/products">Product</Link>
                 </li>
-<<<<<<< HEAD
                 {loginLink}
                 
-=======
-                <li>
-                    if()
-                    <Link to="/login">LoginForm</Link>
-                </li>
-                <li>
-                    OSMAR HAMMEL
-                </li>
->>>>>>> 38392d6f3855bad5190f75dd53c389598bb9423f
             </ul>
         </nav>
     );
