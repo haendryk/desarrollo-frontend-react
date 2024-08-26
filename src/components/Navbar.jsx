@@ -14,7 +14,11 @@ const Navbar = () => {
                     <Link to="/products">Product</Link>
                 </li>
                 <li>
+                    if()
                     <Link to="/login">LoginForm</Link>
+                </li>
+                <li>
+                    OSMAR HAMMEL
                 </li>
             </ul>
         </nav>

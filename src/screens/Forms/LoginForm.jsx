@@ -12,12 +12,26 @@ const LoginForm = () => {
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(saveFormData(values));
-        console.log(values);
+        if(form.authPassword){
+            if(form.authPassword.trim() === values.password.trim())  
+                return dispatch(saveFormData(values));
+            return alert('Password incorrecto');
+        }
+        
     }
     const hideModalInfo = (status) => {
         event.preventDefault();
         setModalInfo(status);
+    }
+
+    const showPassword = () => {
+        event.preventDefault();
+        const input = document.getElementById('password');
+        if (input.type === 'password') {
+            input.type = 'text';
+        } else {
+            input.type = 'password';
+        }
     }
     
     return (
@@ -26,7 +40,7 @@ const LoginForm = () => {
         animate={{opacity: 1, y: 0}}
         transition={{duration: 1}}    
         >
-            <ModalInfo visible={showModalInfo} message="Bienvenido Hammel" onClose={() => hideModalInfo(false)} />
+        <ModalInfo visible={showModalInfo} message="Bienvenido Hammel" onClose={() => hideModalInfo(false)} />
         <div className="container">
             <form onSubmit={handleSubmit} className="form">
                 <h2>Login</h2>
@@ -63,7 +77,7 @@ const LoginForm = () => {
                     required 
                     value ={values.password}
                     onChange={handleChange}
-                />
+                /> <button onClick={showPassword} >ShowPassword</button>
                 </div>
                 <div className="button-container">
                     <button type="submit" >Login</button>
