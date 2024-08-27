@@ -6,7 +6,7 @@ const Navbar = () => {
     const form = useSelector((state) => state.form);
     let loginLink;
     if(form.formData.username)
-        loginLink = (<li>{form.formData.username.trim() + ': ' + form.formData.email.trim()}</li>);
+        loginLink = (<li className="align-right"><a>{form.formData.username.trim() + ': ' + form.formData.email.trim()}</a></li>);
     else
         loginLink = (<li><Link to="/login">LoginForm</Link></li>);
     return (
@@ -22,9 +22,9 @@ const Navbar = () => {
                     <Link to="/products">Product</Link>
                 </li>
                 {loginLink}
-                
             </ul>
         </nav>
+        
     );
 };
 

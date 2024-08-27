@@ -5,7 +5,7 @@ import { color, motion } from "framer-motion";
 import ModalInfo from "../../components/modalInfo";
 import { useState } from "react";
 const LoginForm = () => {
-    const [values, handleChange]=useForm({username: '', email: '', password: '', message: ''});
+    const [values, handleChange]=useForm({username: '', email: '', password: '', message: '', show: 'show'});
     const [showModalInfo, setModalInfo] = useState(false);
     const form = useSelector((state) => state.form);
     const dispatch = useDispatch();
@@ -31,8 +31,11 @@ const LoginForm = () => {
         const input = document.getElementById('password');
         if (input.type === 'password') {
             input.type = 'text';
+            values.show = 'hide';
+
         } else {
             input.type = 'password';
+            values.show = 'show';
         }
     }
     
@@ -79,11 +82,12 @@ const LoginForm = () => {
                     required 
                     value ={values.password}
                     onChange={handleChange}
-                /> <button onClick={showPassword} >ShowPassword</button>
+                /> 
+                <button onClick={showPassword} >{values.show}</button>
                 </div>
                 <div className="button-container">
                     <button type="submit" >Login</button>
-                    <button onClick={() => hideModalInfo(true)} >Show</button>
+                    <button onClick={() => hideModalInfo(true)} >MESSAGE</button>
                 </div>
                 
             </form>

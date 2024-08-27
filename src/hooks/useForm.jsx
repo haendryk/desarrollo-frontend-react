@@ -9,7 +9,9 @@ const useForm = (initialValue) => {
             ...values,
             [name]: value
         });
+        console.log(values);
     };
     return [values, handleChange];
 };
+
 export default useForm;
