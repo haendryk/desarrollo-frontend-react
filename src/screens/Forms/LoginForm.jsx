@@ -1,11 +1,13 @@
 import useForm from "../../hooks/useForm";
 import {useSelector, useDispatch} from "react-redux";
-import { saveFormData } from "../../redux/form/formActions";
+import { saveFormData, resetFormData } from "../../redux/form/formActions";
 import { color, motion } from "framer-motion";
 import ModalInfo from "../../components/modalInfo";
 import { useState } from "react";
 const LoginForm = () => {
-    const [values, handleChange]=useForm({username: '', email: '', password: '', message: '', show: 'show'});
+    const [values, handleChange, resetForm]=useForm({username: '', email: '', password: ''});
+    const [show, setShow] = useState('show');
+    const [message, setMessage] = useState('');
     const [showModalInfo, setModalInfo] = useState(false);
     const form = useSelector((state) => state.form);
     const dispatch = useDispatch();
@@ -13,43 +15,76 @@ const LoginForm = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         if(form.authPassword){
-            if(form.authPassword.trim() === values.password.trim())  
+            if(form.authPassword.trim() === values.password.trim()){
+
                 return dispatch(saveFormData(values));
-            return  hideModalInfo(true), values.message = 'Password incorrecto';
+            }  
+            setMessage( <>Password incorrecto</>);
+            return  showModal() ;
             
         }
         
     }
-    const hideModalInfo = (status) => {
+    const showModalLogout = () => {
         event.preventDefault();
-
-        setModalInfo(status);
+        if(form.formData.username!==''){
+                setModalInfo(true);
+               return setMessage(
+                    <>
+                    Presione lara salir
+                    <button onClick={logout}>Salir</button>
+                    </>
+                );
+        }
+        setModalInfo(true);
+        return setMessage(
+            <>
+            No existe una session!!!
+            </>
+        );
     }
+
+    const logout = () => {
+        
+        dispatch(resetFormData());
+        setModalInfo(false);
+        resetForm();
+    }
+
+    const showModal = () => {
+        setModalInfo(true);
+      };
+    
+      const hideModal = () => {
+        setModalInfo(false);
+      };
 
     const showPassword = () => {
         event.preventDefault();
         const input = document.getElementById('password');
         if (input.type === 'password') {
             input.type = 'text';
-            values.show = 'hide';
+            setShow('hide');
+            
 
         } else {
             input.type = 'password';
             values.show = 'show';
+            setShow('show');
         }
     }
-    
+   
     return (
         <motion.div
         initial={{opacity: 0, y: -70}}
         animate={{opacity: 1, y: 0}}
         transition={{duration: 1}}    
         >
-        <ModalInfo visible={showModalInfo} message={values.message} onClose={() => hideModalInfo(false)} />
+        <ModalInfo visible={showModalInfo} message={message} onClose={hideModal}><p>asdasd</p></ModalInfo>
         <div className="container">
             <form onSubmit={handleSubmit} className="form">
                 <h2>Login</h2>
-                <h2>{form.formData.username}</h2>
+                <h2>UserName: {form.formData.username}</h2>
                 <div>
                 
                 <label htmlFor="username">username</label>
@@ -83,11 +118,11 @@ const LoginForm = () => {
                     value ={values.password}
                     onChange={handleChange}
                 /> 
-                <button onClick={showPassword} >{values.show}</button>
+                <button onClick={showPassword} >{show}</button>
                 </div>
                 <div className="button-container">
                     <button type="submit" >Login</button>
-                    <button onClick={() => hideModalInfo(true)} >MESSAGE</button>
+                    <a href="#" className="logout" onClick={showModalLogout}>Logout</a>
                 </div>
                 
             </form>

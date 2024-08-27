@@ -7,8 +7,6 @@ const Navbar = () => {
     let loginLink;
     if(form.formData.username)
         loginLink = (<li className="align-right"><a>{form.formData.username.trim() + ': ' + form.formData.email.trim()}</a></li>);
-    else
-        loginLink = (<li><Link to="/login">LoginForm</Link></li>);
     return (
         <nav>
             <ul>
@@ -21,6 +19,7 @@ const Navbar = () => {
                 <li>
                     <Link to="/products">Product</Link>
                 </li>
+                <li><Link to="/login">LoginForm</Link></li>
                 {loginLink}
             </ul>
         </nav>

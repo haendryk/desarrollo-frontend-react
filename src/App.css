@@ -64,6 +64,17 @@ a {
 a:hover {
   color: #ffcc00;
 }
+
+.logout {
+  color: rgb(78, 68, 170);
+
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.logout:hover {
+  color: #39973e;
+}
 /* style forms */
 .container {
   display: flex;

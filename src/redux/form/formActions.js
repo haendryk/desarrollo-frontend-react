@@ -1,5 +1,4 @@
-import { SET_FORM_DATA } from './formTypes';
-import { RESET_FORM_DATA } from './formTypes';
+import { SET_FORM_DATA, RESET_FORM_DATA } from './formTypes';
 export const saveFormData = (FormData) => {
     return {
         type: SET_FORM_DATA,
@@ -7,9 +6,8 @@ export const saveFormData = (FormData) => {
     }
 }
 
-export const resetFormData=(FormData)=>{
+export const resetFormData=()=>{
     return {
-        type: RESET_FORM_DATA,
-        payload: FormData,
+        type: RESET_FORM_DATA
     }
 }

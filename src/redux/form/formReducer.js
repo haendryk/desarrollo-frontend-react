@@ -6,8 +6,8 @@ const initialState = {
         email:'',
         password:'',
     },
-    authPassword:'h4mm31',
-    //authPassword:'mod7ReactUSIP',
+    //authPassword:'h4mm31',
+    authPassword:'mod7ReactUSIP',
 };
 
 const formReducer = (state = initialState, action) => {

@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 const ModalInfo = ({visible, message, onClose }) => {
     if (!visible) return null;
+    // if(onCloseSession)
+
   return (
     <div className="modal-overlay">
     <motion.div
