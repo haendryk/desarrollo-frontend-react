@@ -5,13 +5,13 @@ import Resources from './LandingPage/_components/Resources';
 import Footer from './LandingPage/_components/Footer';
 const LandingPage = () => {
     return (
-        <>
+        <div className='resources-container'>
             <Header />
             <Welcome />
             <Topics />
             <Resources />
             <Footer />
-        </>
+        </div>
     );
 };
 
