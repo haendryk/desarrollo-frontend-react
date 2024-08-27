@@ -6,7 +6,7 @@ const Welcome = () => {
             </h2>
             <hr className="resources-separator" />
             <p>
-                Para profundizar en el tema de la programación, te recomendamos los siguientes recursos:
+            Este módulo se centra en el uso de <strong>React</strong>, Incluyendo la <strong>componentes</strong>, el manejo de <strong>hooks</strong>, y el uso de <strong>Redux</strong>.
             </p>
         </>
     );
