@@ -1,6 +1,6 @@
 import Logo from './Default/_components/Logo';
 import Description from "./Default/_components/Description";
-import OpenLink from '../components/OpenLink';
+import OpenLinks from '../components/OpenLinks';
 import Contador from "./Default/_components/Contador";
 
 const Default = () => {
@@ -10,11 +10,11 @@ const Default = () => {
                 <Contador />
                 <Logo />
                 <Description />
-                <OpenLink
+                <OpenLinks
                     title="Learn React"
                     url="https://react.dev/"
                 />
-                <OpenLink
+                <OpenLinks
                     title="Mi proyecto react (Github)"
                     url="https://github.com/haendryk/desarrollo-frontend-react"
                 />
